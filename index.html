@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cafe</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/daisyui@1.9.4/dist/full.js"></script>
+    <!-- Add Animate.css CDN for animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Hero section animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+    /* Scroll effect class for menu items */
+    .menu-item.visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .product.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .blog-post.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    </style>
+
+</head>
+<body class="bg-gray-100"  >
+
+     
+     <!-- <header class="header fixed top-0 left-0 right-0 bg-[#010103] py-4 px-8 flex justify-between items-center border-b border-white/30 z-50">
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo" class="h-24">
+        </div>
+        
+    </header> -->
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Logo" class="w-24 rounded-full">
+            </a>
+    
+            <nav class="navbar space-x-6">
+                <a href="#home" class="hover:text-yellow-400">Home</a>
+                <a href="#about" class="hover:text-yellow-400">About</a>
+                <a href="#menu" class="hover:text-yellow-400">Menu</a>
+                <a href="#products" class="hover:text-yellow-400">Products</a>
+                <a href="#reviews" class="hover:text-yellow-400">Review</a>
+                <a href="#contact" class="hover:text-yellow-400">Contact</a>
+                <a href="#blog" class="hover:text-yellow-400">Blogs</a>
+            </nav>
+    
+            <div class="flex items-center gap-2">
+                <span>Coffee</span>
+        
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" id="modeToggle" class="sr-only peer">
+                  <div class="w-14 h-10 bg-amber-300 rounded-full peer peer-checked:bg-blue-300 transition-all"></div>
+                  <div class="absolute left-1 top-1 w-8 h-8 bg-white rounded-full shadow-md peer-checked:translate-x-4 transition-transform flex items-center justify-center text-lg">
+                    ☕
+                  </div>
+                </label>
+        
+                <span>Beverage</span>
+              </div>
+
+            <div class="icons flex space-x-6">
+                <!-- Search Icon -->
+                <div class="fas fa-search cursor-pointer text-xl" id="search-btn"></div>
+                
+                <!-- Cart Icon -->
+                <div class="fas fa-shopping-cart cursor-pointer text-xl" id="cart-btn"></div>
+    
+                <!-- Menu Icon (for mobile) -->
+                <div class="fas fa-bars cursor-pointer text-xl" id="menu-btn"></div>
+            </div>
+        </div>
+    
+        <!-- Search form -->
+         <div class="search-form absolute top-0 right-0 mt-20 mr-4 hidden transition duration-300 ease-in-out" id="search-form">
+
+        <!--- <div class="search-form absolute top-0 right-0 mt-20 mr-4 hidden" id="search-form"> -->
+            <input type="text" id="search-box" placeholder="search here..." class="text-black bg-white px-4 py-2 rounded border border-gray-300 w-full placeholder-gray-500">
+            <label for="search-box" class="fas fa-search absolute top-2 right-3 text-black-500"></label>
+        </div>
+
+
+    
+        <!-- Cart Items Section -->
+        
+           
+<div id="cart-items-container" class="cart-items-container absolute top-0 right-0 mt-16 mr-4 bg-white shadow-md rounded-lg p-4 hidden transition duration-300 ease-in-out">
+
+<div class="cart-items-container absolute top-0 right-0 mt-16 mr-4 bg-white shadow-md rounded-lg p-4 hidden" id="cart-items-container">
+            <div class="cart-item flex items-center justify-between py-2">
+                <span class="fas fa-times cursor-pointer text-gray-500"></span>
+                <img src="images/cart-item-1.png" alt="Item 1" class="w-16">
+                <div class="content">
+                    <h3 class="text-sm font-semibold">Cart Item 01</h3>
+                    <div class="price text-xs text-gray-600">$15.99/-</div>
+                </div>
+            </div>
+            <div class="cart-item flex items-center justify-between py-2">
+                <span class="fas fa-times cursor-pointer text-gray-500"></span>
+                <img src="images/cart-item-2.png" alt="Item 2" class="w-16">
+                <div class="content">
+                    <h3 class="text-sm font-semibold">Cart Item 02</h3>
+                    <div class="price text-xs text-gray-600">$15.99/-</div>
+                </div>
+            </div>
+            <div class="cart-item flex items-center justify-between py-2">
+                <span class="fas fa-times cursor-pointer text-gray-500"></span>
+                <img src="images/cart-item-3.png" alt="Item 3" class="w-16">
+                <div class="content">
+                    <h3 class="text-sm font-semibold">Cart Item 03</h3>
+                    <div class="price text-xs text-gray-600">$15.99/-</div>
+                </div>
+            </div>
+            <div class="cart-item flex items-center justify-between py-2">
+                <span class="fas fa-times cursor-pointer text-gray-500"></span>
+                <img src="images/cart-item-4.png" alt="Item 4" class="w-16">
+                <div class="content">
+                    <h3 class="text-sm font-semibold">Cart Item 04</h3>
+                    <div class="price text-xs text-gray-600">$15.99/-</div>
+                </div>
+            </div>
+            <a href="#" class="btn bg-yellow-500 text-white px-4 py-2 rounded block text-center mt-4">Checkout Now</a>
+        </div>
+        
+    </header>
+    
+
+    <!-- Home Section -->
+   
+    
+    <section id="home" class="home min-h-screen bg-cover bg-center relative" style="background-image: url('images/homeimage.jpg');">
+        <div class="content absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center text-center px-4">
+            <h3 class="text-6xl text-white uppercase leading-tight mb-4 fade-in">Welcome to Our Coffee Shop</h3>
+            <p class="text-xl text-gray-300 mb-8 fade-in">We offer the best coffee with a great atmosphere.</p>
+            <button class="btn bg-[#d3ad7f] text-white py-3 px-12 text-lg rounded-full hover:bg-[#b08c60] hover:scale-105 transition-all duration-300 cursor-pointer fade-in">
+                Get Started
+            </button>
+        </div>
+    </section>
+
+    
+    
+        
+    <!-- About Section -->
+
+<!-- About Section -->
+<section id="about" class="py-16 px-8 bg-[#13131a]">
+    <h2 class="text-4xl text-center mb-8 text-white fade-in">About Us</h2>
+    <div class="flex flex-wrap justify-center gap-8">
+        <div class="about-info bg-[#1c1c1c] p-8 w-96 rounded-lg opacity-0 translate-x-[-50px] transition-all duration-1000">
+            <h3 class="text-2xl mb-4 text-white">Who We Are</h3>
+            <p class="text-lg text-gray-300 mb-4">
+                We are a company committed to providing the best products and services to our customers.
+            </p>
+        </div>
+        <div class="about-image w-full sm:w-96 rounded-lg opacity-0 translate-x-[50px] transition-all duration-1000">
+            <img src="images/aboutimg.jpg" alt="About Us" class="w-full h-auto rounded-lg">
+        </div>
+    </div>
+</section>
+
+
+    <!-- Menu Section -->
+
+<section id="menu" class="menu py-16 px-8 bg-[#13131a]">
+    <h2 class="text-4xl text-center text-white mb-8">Our Menu</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div class="menu-item opacity-0 transform scale-95 transition-all duration-500 ease-in-out bg-[#1c1c1c] border border-white/30 p-8 text-center">
+            <img src="images/manu1.jpg" alt="americano" class="w-full h-48 object-cover mb-4">
+            <h3 class="text-xl text-white mb-2">Americano</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$15</p>
+            <button class="btn bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Order Now</button>
+        </div>
+        <div class="menu-item opacity-0 transform scale-95 transition-all duration-500 ease-in-out bg-[#1c1c1c] border border-white/30 p-8 text-center">
+            <img src="images/menu2.jpg" alt="Capiccino" class="w-full h-48 object-cover mb-4">
+            <h3 class="text-xl text-white mb-2">Capiccino</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$18</p>
+            <button class="btn bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Order Now</button>
+        </div>
+        <div class="menu-item opacity-0 transform scale-95 transition-all duration-500 ease-in-out bg-[#1c1c1c] border border-white/30 p-8 text-center">
+            <img src="images/blog1.jpg" alt="cold coffee" class="w-full h-48 object-cover mb-4">
+            <h3 class="text-xl text-white mb-2">Cold Coffee</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$20</p>
+            <button class="btn bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Order Now</button>
+        </div>
+        <div class="menu-item opacity-0 transform scale-95 transition-all duration-500 ease-in-out bg-[#1c1c1c] border border-white/30 p-8 text-center">
+            <img src="images/menu4.jpg" alt="latte" class="w-full h-48 object-cover mb-4">
+            <h3 class="text-xl text-white mb-2">Latte</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$22</p>
+            <button class="btn bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Order Now</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Products Section -->
+    
+
+
+
+      <section id="products" class="py-16 px-8 bg-[#13131a] relative">
+        <h2 class="text-4xl text-center text-white mb-8">Our Products</h2>
+    
+        <!-- Left Arrow -->
+        <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-[#d3ad7f] text-white p-4 rounded-full z-10 hover:bg-white hover:text-[#13131a]">
+          &#10094;
+        </button>
+    
+        <!-- Right Arrow -->
+        <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-[#d3ad7f] text-white p-4 rounded-full z-10 hover:bg-white hover:text-[#13131a]">
+          &#10095;
+        </button>
+    
+        <div id="slider" class="flex overflow-x-auto space-x-8 scroll-smooth scrollbar-hide">
+          <!-- Product Card -->
+          <div class="min-w-[300px] bg-[#1c1c1c] border border-white/30 p-8 text-center shrink-0">
+            <img src="images/product1.png" class="w-full h-48 object-cover mb-4" alt="nescafe classic">
+            <h3 class="text-xl mb-2 text-white">Nescafe Classic</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$20</p>
+            <button class="bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Buy Now</button>
+          </div>
+    
+          <!-- Copy the product card for more -->
+          <div class="min-w-[300px] bg-[#1c1c1c] border border-white/30 p-8 text-center shrink-0">
+            <img src="images/product2.jpg" class="w-full h-48 object-cover mb-4" alt="Espresso Bean">
+            <h3 class="text-xl mb-2 text-white">Espresso Bean</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$25</p>
+            <button class="bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Buy Now</button>
+          </div>
+    
+          <div class="min-w-[300px] bg-[#1c1c1c] border border-white/30 p-8 text-center shrink-0">
+            <img src="images/product3.jpg" class="w-full h-48 object-cover mb-4" alt="Koppee Classic">
+            <h3 class="text-xl mb-2 text-white">Koppee Classic</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$30</p>
+            <button class="bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Buy Now</button>
+          </div>
+    
+          <div class="min-w-[300px] bg-[#1c1c1c] border border-white/30 p-8 text-center shrink-0">
+            <img src="images/product4.jpg" class="w-full h-48 object-cover mb-4" alt="Nescafe Gold">
+            <h3 class="text-xl mb-2 text-white">Nescafe Gold</h3>
+            <p class="text-lg text-[#d3ad7f] mb-2">$35</p>
+            <button class="bg-[#d3ad7f] text-white py-2 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Buy Now</button>
+          </div>
+    
+         
+        </div>
+      </section>
+
+      
+    
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews py-16 px-8 bg-[#13131a]">
+        <h2 class="text-4xl text-center text-white mb-8">Customer Reviews</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+            <div class="review bg-[#1c1c1c] p-8 text-center w-72">
+                <p class="text-lg text-gray-300 mb-4">"This product changed my life! Highly recommend it to anyone looking for quality!"</p>
+                <h4 class="text-xl text-white">John Doe</h4>
+                <p class="text-[#d3ad7f]">Verified Buyer</p>
+            </div>
+            <div class="review bg-[#1c1c1c] p-8 text-center w-72">
+                <p class="text-lg text-gray-300 mb-4">"Amazing customer service and fast shipping. I'm very happy with my purchase."</p>
+                <h4 class="text-xl text-white">Jane Smith</h4>
+                <p class="text-[#d3ad7f]">Verified Buyer</p>
+            </div>
+            <div class="review bg-[#1c1c1c] p-8 text-center w-72">
+                <p class="text-lg text-gray-300 mb-4">"Great quality and very affordable! Will buy again for sure."</p>
+                <h4 class="text-xl text-white">Alex Johnson</h4>
+                <p class="text-[#d3ad7f]">Verified Buyer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact py-16 px-8 bg-[#13131a]">
+        <h2 class="text-4xl text-center text-white mb-8">Contact Us</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+            <div class="contact-form bg-[#1c1c1c] p-8 w-96">
+                <form action="#" method="POST">
+                    <input type="text" placeholder="Your Name" class="w-full p-4 mb-4 bg-[#2a2a2a] text-white border border-[#d3ad7f] rounded-md focus:outline-none">
+                    <input type="email" placeholder="Your Email" class="w-full p-4 mb-4 bg-[#2a2a2a] text-white border border-[#d3ad7f] rounded-md focus:outline-none">
+                    <textarea placeholder="Your Message" class="w-full p-4 mb-4 bg-[#2a2a2a] text-white border border-[#d3ad7f] rounded-md focus:outline-none" rows="4"></textarea>
+                    <button type="submit" class="w-full bg-[#d3ad7f] text-white py-3 px-4 rounded-full hover:bg-white hover:text-[#13131a]">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info bg-[#1c1c1c] p-8 w-96">
+                <h3 class="text-2xl text-white mb-4">Our Address</h3>
+                <p class="text-lg text-gray-300 mb-4">123 Righor Street, California</p>
+                <h3 class="text-2xl text-white mb-4">Phone</h3>
+                <p class="text-lg text-gray-300 mb-4">+143 143 1432</p>
+                <h3 class="text-2xl text-white mb-4">Email</h3>
+                <p class="text-lg text-gray-300 mb-4">mycafe@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    
+    <section id="blog" class="blog py-16 px-8 bg-[#13131a]">
+        <h2 class="text-4xl text-center text-white mb-8">Latest Blog Posts</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div class="blog-post opacity-0 transform translate-x-10 transition-all duration-500 ease-in-out bg-[#1c1c1c] p-8">
+                <img src="images/blog11.jpg" alt="Blog 1" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-xl text-white mb-2">Blog Post Title</h3>
+                <p class="text-lg text-gray-300 mb-4">Short description of the blog post. Read more about this topic here.</p>
+                <a href="#" class="text-[#d3ad7f] hover:underline">Read More</a>
+            </div>
+            <div class="blog-post opacity-0 transform translate-x-10 transition-all duration-500 ease-in-out bg-[#1c1c1c] p-8">
+                <img src="images/blog2.jpg" alt="Blog 2" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-xl text-white mb-2">Blog Post Title</h3>
+                <p class="text-lg text-gray-300 mb-4">Short description of the blog post. Read more about this topic here.</p>
+                <a href="#" class="text-[#d3ad7f] hover:underline">Read More</a>
+            </div>
+            <div class="blog-post opacity-0 transform translate-x-10 transition-all duration-500 ease-in-out bg-[#1c1c1c] p-8">
+                <img src="images/blog3.jpg" alt="Blog 3" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-xl text-white mb-2">Blog Post Title</h3>
+                <p class="text-lg text-gray-300 mb-4">Short description of the blog post. Read more about this topic here.</p>
+                <a href="#" class="text-[#d3ad7f] hover:underline">Read More</a>
+            </div>
+            <div class="blog-post opacity-0 transform translate-x-10 transition-all duration-500 ease-in-out bg-[#1c1c1c] p-8">
+                <img src="images/blog4.jpg" alt="Blog 4" class="w-full h-48 object-cover mb-4">
+                <h3 class="text-xl text-white mb-2">Blog Post Title</h3>
+                <p class="text-lg text-gray-300 mb-4">Short description of the blog post. Read more about this topic here.</p>
+                <a href="#" class="text-[#d3ad7f] hover:underline">Read More</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer class="footer bg-[#13131a] py-8 text-center text-white">
+
+        <div class="share mb-4 text-center">
+            <a href="#" class="inline-block text-2xl mx-4 bg-[#d3ad7f] text-white p-4 rounded-full hover:bg-white hover:text-[#13131a]">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="inline-block text-2xl mx-4 bg-[#d3ad7f] text-white p-4 rounded-full hover:bg-white hover:text-[#13131a]">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="inline-block text-2xl mx-4 bg-[#d3ad7f] text-white p-4 rounded-full hover:bg-white hover:text-[#13131a]">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+
+
+
+        
+
+        <div class="links mb-4">
+            <a href="#" class="text-lg mx-2 hover:text-[#d3ad7f]">
+                <i class="fas fa-user-shield mr-2"></i> Privacy Policy
+            </a>
+            <a href="#" class="text-lg mx-2 hover:text-[#d3ad7f]">
+                <i class="fas fa-file-contract mr-2"></i> Terms of Service
+            </a>
+            <a href="#" class="text-lg mx-2 hover:text-[#d3ad7f]">
+                <i class="fas fa-envelope mr-2"></i> Contact Us
+            </a>
+        </div>
+
+        
+
+        <p class="credit text-sm text-gray-400">
+            &copy; 2025 My Cafe | All rights reserved.
+        </p>
+    </footer>
+
+    
+  
+<script src="script.js"></script>
+</body>
+</html>
